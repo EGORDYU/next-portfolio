@@ -1,5 +1,26 @@
-body{
-  background-color: gray;
-  color:white
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* styles/globals.css */
+
+:root {
+  --color-bg: #ffffff;
+  --color-text: #000000;
 }
 
+body.light {
+  --color-bg: #ffffff;
+  --color-text: #000000;
+}
+
+body.dark {
+  --color-bg: #000000;
+  --color-text: #ffffff;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
