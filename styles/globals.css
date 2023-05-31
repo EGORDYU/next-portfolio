@@ -5,18 +5,20 @@
 /* styles/globals.css */
 
 :root {
-  --color-bg: #ffffff;
-  --color-text: #000000;
+  --color-bg-light: #ffffff;
+  --color-text-light: #000000;
+  --color-bg-dark: #000000;
+  --color-text-dark: #ffffff;
 }
 
 body.light {
-  --color-bg: #ffffff;
-  --color-text: #000000;
+  --color-bg: var(--color-bg-light);
+  --color-text: var(--color-text-light);
 }
 
 body.dark {
-  --color-bg: #000000;
-  --color-text: #ffffff;
+  --color-bg: var(--color-bg-dark);
+  --color-text: var(--color-text-dark);
 }
 
 body {
