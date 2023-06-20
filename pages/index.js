@@ -1,7 +1,36 @@
-import Head from 'next/head'
-import styles from '@/styles/Home.module.css'
-import { useTheme } from 'next-themes'
+import React, { useState } from 'react';
+import Head from 'next/head';
+import styles from '@/styles/Home.module.css';
+import { useTheme } from 'next-themes';
+import { FiChevronDown } from 'react-icons/fi';
 
+const projects = [
+  {
+    title: 'PandaBubMe 🐼',
+    description: 'Platformer Bullethell',
+    link: 'https://egordyu.github.io/project-1/',
+    additionalDescription: 'As part of my coursework, I designed and coded an interactive platformer game with a panda character using canvas and HTML/JavaScript. I researched various platformer games for inspiration, designed the games characters and environment, and incorporated game mechanics to make it engaging (Situation, Task). The final product was a fun and interactive game that received positive feedback and helped me improve my coding and game design skills',
+  },
+  {
+    title: 'GPTSaves 🤖',
+    description: 'Website using GPT API to call and save GPT prompts',
+    link: 'https://gptsaves-deployment-project2.herokuapp.com/ ',
+    additionalDescription: 'I developed a website that allows users to communicate with ChatGPT, a chatbot, and securely save their conversations. I integrated the ChatGPT API, designed the UI/UX using HTML, CSS, and JavaScript, and connected it to a PostgreSQL database for secure storage. The website received positive feedback and improved my web development skills, particularly in working with APIs, UI/UX design, database connectivity, and user security',
+  },
+  {
+    title: 'Card.io 🃏',
+    description: 'Flashcard website',
+    link: 'https://velvety-croissant-33ec85.netlify.app/decks',
+    additionalDescription: 'Additional description for Card.io project',
+  },
+  {
+    title: 'ZergCoach 🐛',
+    description: 'Zerg Coaching and information website',
+    link: 'https://main--lustrous-kulfi-ced407.netlify.app/',
+    additionalDescription: 'Additional description for ZergCoach project',
+  },
+  // Add more projects here...
+];
 
 const skills = [
   'JavaScript',
@@ -16,36 +45,23 @@ const skills = [
   // Add more skills here...
 ];
 
-const projects = [
-  {
-    title: 'PandaBubMe 🐼',
-    description: 'Platformer Bullethell',
-    link: 'https://egordyu.github.io/project-1/',
-  },
-  {
-    title: 'GPTSaves 🤖',
-    description: 'Website using GPT API to call and save GPT prompts',
-    link: 'https://gptsaves-deployment-project2.herokuapp.com/ ',
-  },
-  {
-    title: 'Card.io 🃏',
-    description: 'Flashcard website',
-    link: 'https://velvety-croissant-33ec85.netlify.app/decks',
-  },
-  {
-    title: 'ZergCoach 🐛',
-    description: 'Zerg Coaching and information website',
-    link: 'https://main--lustrous-kulfi-ced407.netlify.app/',
-  },
-  // Add more projects here...
-];
-
 export default function Home() {
-  const { theme, setTheme } = useTheme()
-  
+  const { theme, setTheme } = useTheme();
+  const [expandedIndex, setExpandedIndex] = useState(-1);
+
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
+    setTheme(theme === 'dark' ? 'light' : 'dark');
+  };
+
+  const toggleExpand = (index) => {
+    if (index === expandedIndex) {
+      // Collapse the currently expanded project
+      setExpandedIndex(-1);
+    } else {
+      // Expand the clicked project
+      setExpandedIndex(index);
+    }
+  };
 
   return (
     <div className="mx-auto max-w-xl p-4 md:max-w-3xl">
@@ -56,8 +72,8 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <button 
-        onClick={toggleTheme} 
+      <button
+        onClick={toggleTheme}
         className="mb-6 py-2 px-4 border rounded-full text-sm uppercase tracking-wide font-bold 
         transition-colors duration-200 transform 
         hover:scale-105 
@@ -66,34 +82,65 @@ export default function Home() {
       >
         Toggle theme
       </button>
-      
+
       <main>
         <section id="about" className="mb-8">
           <h1 className="font-bold text-2xl mb-2">About Me</h1>
-          <p className="text-gray-600 dark:text-gray-400">Hi, I'm Egor Dyuzhev, a passionate developer with skills in various languages and frameworks.</p>
+          <p className="text-gray-600 dark:text-gray-400">
+            Hi, I'm Egor Dyuzhev, a passionate developer with skills in various languages and frameworks.
+          </p>
         </section>
 
         <section id="skills" className="mb-8">
           <h1 className="font-bold text-2xl mb-2">Skills</h1>
           <ul className="flex flex-wrap gap-2">
             {skills.map((skill, index) => (
-              <li key={index} className="bg-gray-200 dark:bg-gray-700 py-1 px-2 rounded">{skill}</li>
+              <li key={index} className="bg-gray-200 dark:bg-gray-700 py-1 px-2 rounded">
+                {skill}
+              </li>
             ))}
           </ul>
         </section>
 
         <section id="projects" className="mb-8">
-          <h1 className="font-bold text-2xl mb-2">Projects</h1>
-          <ul className="grid grid-cols-1 gap-4">
-            {projects.map((project, index) => (
-              <li key={index} className="border dark:border-gray-700 p-4 rounded">
-                <a href={project.link} className="text-blue-600 hover:underline dark:text-blue-400">
-                  {project.title}: {project.description}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
+  <h1 className="font-bold text-2xl mb-2">Projects</h1>
+  <ul className="grid grid-cols-1 gap-4">
+  {projects.map((project, index) => (
+  <li key={index} className="border dark:border-gray-700 p-4 rounded project">
+    <div>
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-blue-600 hover:underline dark:text-blue-400"
+        onClick={() => toggleExpand(index)}
+      >
+        {project.title}: {project.description}
+      </a>
+    </div>
+    <div className="mt-2">
+      <button
+        className="arrow-button text-gray-500 hover:text-gray-700 transition-colors duration-200"
+        onClick={() => toggleExpand(index)}
+      >
+        <FiChevronDown size={20} />
+      </button>
+    </div>
+    {expandedIndex === index && (
+      <div className="mt-2">
+        <p>{project.additionalDescription}</p>
+        {/* Add any additional content you want to show when expanded */}
+      </div>
+    )}
+  </li>
+))}
+
+
+
+  </ul>
+</section>
+
+
 
         <section id="contact">
           <h1 className="font-bold text-2xl mb-2">Contact Me</h1>
@@ -103,5 +150,5 @@ export default function Home() {
         </section>
       </main>
     </div>
-  )
+  );
 }
