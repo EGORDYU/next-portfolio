@@ -35,7 +35,7 @@ const projects = [
   {
     title: 'ZergCoach 🐛',
     description: 'Zerg Coaching and information website',
-    link: 'TBD',
+    link: 'https://main--lustrous-kulfi-ced407.netlify.app/',
   },
   // Add more projects here...
 ];
@@ -66,7 +66,7 @@ export default function Home() {
       >
         Toggle theme
       </button>
-
+      
       <main>
         <section id="about" className="mb-8">
           <h1 className="font-bold text-2xl mb-2">About Me</h1>
