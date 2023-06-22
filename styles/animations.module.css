@@ -1,0 +1,20 @@
+/* styles/animations.module.css */
+
+.animation-fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .animation-fade-in-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+  .animation-fade-in a {
+    color: orange;
+  }
+  
+  .animation-fade-in a:hover {
+    color: #ff7f00; /* Change to the desired hover color */
+  }
+  

@@ -59,6 +59,13 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
   }
+  .contact-link-dark {
+    color: yellow !important;
+  }
+  
+  .contact-link-light {
+    color: blue !important;
+  }
   
   
   
