@@ -3,8 +3,11 @@ import Head from 'next/head';
 import { useTheme } from 'next-themes';
 import { FiChevronDown } from 'react-icons/fi';
 import { motion } from 'framer-motion';
-import styles from '@/styles/animations.module.css';
-import '@/styles/Home.module.css';
+import styles from '../styles/animations.module.css';
+import '../styles/Home.module.css';
+
+
+
 
 const projects = [
   {
@@ -68,6 +71,8 @@ export default function Home() {
   };
 
   return (
+
+    
     <div className="mx-auto max-w-xl p-4 md:max-w-3xl">
       <Head>
         <title>Egor's Portfolio</title>
@@ -75,6 +80,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+
+     <br />
+     <br />
+
 
       <button
         onClick={toggleTheme}
@@ -87,7 +97,26 @@ export default function Home() {
         Toggle theme
       </button>
 
+
+      <nav className={`fixed top-0 right-0 left-0 z-50 ${theme === 'dark' ? 'text-white' : 'text-black'}`}>
+  <div className="container mx-auto flex items-center justify-center">
+    <a href="#about" className={`text-white ${theme === 'light' ? 'text-black' : ''} text-xl font-semibold ml-4 pr-20`}>About</a>
+    <a href="#projects" className={`text-white ${theme === 'light' ? 'text-black' : ''} text-xl font-semibold ml-4 pr-20`}>Projects</a>
+    <a href="#contact" className={`text-white ${theme === 'light' ? 'text-black' : ''} text-xl font-semibold ml-4 pr-20`}>Contact</a>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+        
       <main>
+
+
         <section id="about" className="mb-8 flex items-center">
           <div className="grid grid-cols-2 gap-8">
             <div>
@@ -245,7 +274,6 @@ export default function Home() {
 </motion.p>
 
         </section>
-
       </main>
     </div>
   );

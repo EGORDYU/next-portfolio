@@ -11,10 +11,10 @@
     transition: opacity 0.8s, transform 0.8s;
   }
   .animation-fade-in a {
-    color: orange;
+    color: rgb(96 165 250);
   }
   
   .animation-fade-in a:hover {
-    color: #ff7f00; /* Change to the desired hover color */
+    color: rgb(96 165 250); /* Change to the desired hover color */
+    text-decoration: underline;
   }
-  
