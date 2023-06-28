@@ -18,3 +18,7 @@
     color: rgb(96 165 250); /* Change to the desired hover color */
     text-decoration: underline;
   }
+  .activeNavLink {
+    color: #ff0000; /* change to the color you prefer */
+  }
+  
