@@ -53,7 +53,13 @@ const skills = [
   'Tailwind CSS',
   // Add more skills here...
 ];
-
+const hobbies = [
+  'Starcraft 2 Coaching',
+  'Boxing',
+  'Hiking',
+  'Swimming',
+  'Running'
+]
 export default function Home() {
   const { theme, setTheme } = useTheme();
   const [expandedIndex, setExpandedIndex] = useState(-1);
@@ -112,68 +118,67 @@ export default function Home() {
 
       <br />
       <button
-        onClick={toggleTheme}
-        className="mb-6 py-2 px-4 border rounded-full text-sm uppercase tracking-wide font-bold 
-        transition-colors duration-200 transform 
-        hover:scale-105 
-        dark:hover:bg-white dark:hover:text-black
-        dark:bg-black dark:text-white"
-      >
-        Toggle theme
-      </button>
+  onClick={toggleTheme}
+  className="mb-6 py-2 px-4 border rounded-full text-sm uppercase tracking-wide font-bold 
+  transition-colors duration-200 transform 
+  hover:scale-105 
+  dark:hover:bg-white dark:hover:text-black
+  dark:bg-black dark:text-white"
+>
+  {theme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode'}
+</button>
 
-      <nav
-        className={`fixed top-0 right-0 h-screen flex flex-col justify-center items-center ${
-          theme === 'dark' ? 'text-white' : 'text-black'
-        } `}
-      >
-        <div className="h-full flex flex-col justify-center items-center">
-          <ScrollLink
-            to="about"
-            smooth={true}
-            duration={500}
-            className={`text-xl font-semibold mb-4 py-2 px-4 rounded ${
-              styles['navigation-link']
-            } ${styles['about-link']} ${activeLink === 'about' ? 'activeNavLink' : ''}`}
-            onClick={() => setExpandedIndex(-1)}
-          >
-            About
-          </ScrollLink>
-          <ScrollLink
-            to="skills"
-            smooth={true}
-            duration={500}
-            className={`text-xl font-semibold mb-4 py-2 px-4 rounded ${
-              styles['navigation-link']
-            } ${styles['skills-link']} ${activeLink === 'skills' ? 'activeNavLink' : ''}`}
-            onClick={() => setExpandedIndex(-1)}
-          >
-            Skills
-          </ScrollLink>
-          <ScrollLink
-            to="projects"
-            smooth={true}
-            duration={500}
-            className={`text-xl font-semibold mb-4 py-2 px-4 rounded ${
-              styles['navigation-link']
-            } ${styles['projects-link']} ${activeLink === 'projects' ? 'activeNavLink' : ''}`}
-            onClick={() => setExpandedIndex(-1)}
-          >
-            Projects
-          </ScrollLink>
-          <ScrollLink
-            to="contact"
-            smooth={true}
-            duration={500}
-            className={`text-xl font-semibold mb-4 py-2 px-4 rounded ${
-              styles['navigation-link']
-            } ${styles['contact-link']} ${activeLink === 'contact' ? 'activeNavLink' : ''}`}
-            onClick={() => setExpandedIndex(-1)}
-          >
-            Contact
-          </ScrollLink>
-        </div>
-      </nav>
+      <nav className={`fixed top-100 right-40     ${theme === 'light' ? 'text-black' : 'text-white'}`}>
+  <div className="h-full flex flex-col justify-center items-center">
+    NAVIGATION
+    <ScrollLink
+      to="about"
+      smooth={true}
+      duration={500}
+      className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-red-300 outline ${
+        styles['navigation-link']
+      } ${styles['about-link']} ${activeLink === 'about' ? 'activeNavLink' : ''}`}
+      onClick={() => setExpandedIndex(-1)}
+    >
+      About
+    </ScrollLink>
+    <ScrollLink
+      to="skills"
+      smooth={true}
+      duration={500}
+      className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-blue-300 outline ${
+        styles['navigation-link']
+      } ${styles['skills-link']} ${activeLink === 'skills' ? 'activeNavLink' : ''}`}
+      onClick={() => setExpandedIndex(-1)}
+    >
+      Skills
+    </ScrollLink>
+    <ScrollLink
+      to="projects"
+      smooth={true}
+      duration={500}
+      className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-purple-300 outline ${
+        styles['navigation-link']
+      } ${styles['projects-link']} ${activeLink === 'projects' ? 'activeNavLink' : ''}`}
+      onClick={() => setExpandedIndex(-1)}
+    >
+      Projects
+    </ScrollLink>
+    <ScrollLink
+      to="contact"
+      smooth={true}
+      duration={500}
+      className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-green-300 outline ${
+        styles['navigation-link']
+      } ${styles['contact-link']} ${activeLink === 'contact' ? 'activeNavLink' : ''}`}
+      onClick={() => setExpandedIndex(-1)}
+    >
+      Contact
+    </ScrollLink>
+  </div>
+</nav>
+
+
 
       <main>
 
@@ -193,7 +198,7 @@ export default function Home() {
                 initial={{ opacity: 0, translateY: 20 }}
                 animate={{ opacity: 1, translateY: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className={`text-gray-600 dark:text-gray-400 ${styles['animation-fade-in']}`}
+                className={`text-xl text-gray-600 dark:text-gray-400 ${styles['animation-fade-in']}`}
               >
                 Hi, I'm Egor Dyuzhev, a developer with skills in various languages and
                 frameworks. I specialize in JavaScript, CSS, React, Python, Django, and Next.js. I'm passionate about coding and building creative solutions to complex problems. I'm constantly learning and exploring new technologies to expand my skill set.
@@ -213,7 +218,7 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className={`flex justify-center ${styles['animation-fade-in']}`}
             >
-              <img src="/egor.png" alt="Egor Dyuzhev" className="w-80 h-102 rounded-full" />
+              <img src="/egor.png" alt="Egor Dyuzhev" className="w-100 h-102 " />
             </motion.div>
           </div>
         </section>
@@ -247,58 +252,88 @@ export default function Home() {
           </motion.ul>
         </section>
 
-        <section id="projects" className="mb-8">
+        <section id="hobbies" className="mb-8">
           <motion.h1
             initial={{ opacity: 0, translateY: 20 }}
             animate={{ opacity: 1, translateY: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
             className={`font-bold text-2xl mb-2 ${styles['animation-fade-in']}`}
           >
-            Projects
+            Hobbies
           </motion.h1>
-          <ul className="grid grid-cols-1 gap-4">
-            {projects.map((project, index) => (
+          <motion.ul
+            initial={{ opacity: 0, translateY: 20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className={`flex flex-wrap gap-2 ${styles['animation-fade-in']}`}
+          >
+            {hobbies.map((hobby, index) => (
               <motion.li
                 key={index}
-                initial={{ opacity: 0, translateY: 20 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
-                className={`border dark:border-gray-700 p-4 rounded project ${styles['animation-fade-in']}`}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="bg-gray-200 dark:bg-gray-700 py-1 px-2 rounded"
               >
-                <div>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline dark:text-blue-400"
-                    onClick={() => toggleExpand(index)}
-                  >
-                    {project.title}: {project.description}
-                  </a>
-                </div>
-                <div className="mt-2">
-                  <button
-                    className="arrow-button text-gray-500 hover:text-gray-700 transition-colors duration-200"
-                    onClick={() => toggleExpand(index)}
-                  >
-                    <FiChevronDown size={20} />
-                  </button>
-                </div>
-                {expandedIndex === index && (
-                  <motion.div
-                    initial={{ opacity: 0, translateY: 10 }}
-                    animate={{ opacity: 1, translateY: 0 }}
-                    transition={{ duration: 0.4 }}
-                    className={`mt-2 ${styles['animation-fade-in']}`}
-                  >
-                    <p>{project.additionalDescription}</p>
-                    {/* Add any additional content you want to show when expanded */}
-                  </motion.div>
-                )}
+                {hobby}
               </motion.li>
             ))}
-          </ul>
+          </motion.ul>
         </section>
+
+        <section id="projects" className="mb-8">
+  <motion.h1
+    initial={{ opacity: 0, translateY: 20 }}
+    animate={{ opacity: 1, translateY: 0 }}
+    transition={{ duration: 0.8, delay: 1 }}
+    className={`font-bold text-2xl mb-2 ${styles['animation-fade-in']}`}
+  >
+    Projects
+  </motion.h1>
+  <ul className="grid grid-cols-1 gap-4">
+    {projects.map((project, index) => (
+      <motion.li
+        key={index}
+        initial={{ opacity: 0, translateY: 20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
+        className={`border dark:border-gray-700 p-8 rounded-xl project ${styles['animation-fade-in']}`}
+      >
+        <div>
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline dark:text-blue-400 text-lg font-semibold"
+            onClick={() => toggleExpand(index)}
+          >
+            {project.title}: {project.description}
+          </a>
+        </div>
+        <div className="mt-4">
+          <button
+            className="arrow-button text-gray-500 hover:text-gray-700 transition-colors duration-200"
+            onClick={() => toggleExpand(index)}
+          >
+            <FiChevronDown size={20} />
+          </button>
+        </div>
+        {expandedIndex === index && (
+          <motion.div
+            initial={{ opacity: 0, translateY: 10 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.4 }}
+            className={`mt-4 ${styles['animation-fade-in']}`}
+          >
+            <p className="text-lg">{project.additionalDescription}</p>
+            {/* Add any additional content you want to show when expanded */}
+          </motion.div>
+        )}
+      </motion.li>
+    ))}
+  </ul>
+</section>
+
 
         <section id="contact">
           <motion.h1
