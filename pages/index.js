@@ -117,7 +117,12 @@ export default function Home() {
       </Head>
 
       <br />
-      <button
+      
+
+      <nav className={`fixed top-100 right-40 h-screen   ${theme === 'light' ? 'text-black' : 'text-white'}`}>
+        
+  <div className="h-full flex flex-col justify-center items-center">
+  <button
   onClick={toggleTheme}
   className="mb-6 py-2 px-4 border rounded-full text-sm uppercase tracking-wide font-bold 
   transition-colors duration-200 transform 
@@ -127,9 +132,6 @@ export default function Home() {
 >
   {theme === 'dark' ? 'Toggle Light Mode' : 'Toggle Dark Mode'}
 </button>
-
-      <nav className={`fixed top-100 right-40     ${theme === 'light' ? 'text-black' : 'text-white'}`}>
-  <div className="h-full flex flex-col justify-center items-center">
     NAVIGATION
     <ScrollLink
       to="about"
