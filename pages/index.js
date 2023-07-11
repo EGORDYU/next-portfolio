@@ -8,9 +8,9 @@ import styles from '../styles/animations.module.css';
 import '../styles/Home.module.css';
 import '../styles/Projects.module.css';
 import '../styles/Modal.module.css';
-import projects from './projects';
-import skills from './skills';
-import hobbies from './hobbies';
+import projects from '../data/projects';
+import skills from '../data/skills';
+import hobbies from '../data/hobbies';
 import Modal from './modal';
 
 
