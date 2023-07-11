@@ -293,7 +293,7 @@ export default function Home() {
           </ul>
 
           {selectedProject && (
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} project={selectedProject} />
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} project={selectedProject} theme={theme} />
           )}
 
         </section>

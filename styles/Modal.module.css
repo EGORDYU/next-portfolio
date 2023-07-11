@@ -24,4 +24,14 @@
     border: none;
     cursor: pointer;
   }
-  
+
+/* Dark Mode */
+.dark .modalOverlay {
+  background-color: #333;
+  /* other dark mode styles */
+}
+
+.dark .modalContent {
+  background-color: #222;
+  /* other dark mode styles */
+}
