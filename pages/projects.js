@@ -1,37 +1,36 @@
-import Head from 'next/head';
-import Link from 'next/link';
-import styles from '@/styles/Projects.module.css';
-
 const projects = [
   {
-    title: 'Project 1',
-    description: 'Description of project 1',
-    link: '/projects/project1',
+    title: 'PandaBubMe 🐼',
+    description: 'Platformer Bullethell',
+    link: 'https://egordyu.github.io/project-1/',
+    additionalDescription:
+      'As part of my coursework, I designed and coded an interactive platformer game with a panda character using canvas and HTML/JavaScript. I researched various platformer games for inspiration, designed the game\'s characters and environment, and incorporated game mechanics to make it engaging. The final product was a fun and interactive game that received positive feedback and helped me improve my coding and game design skills.',
+    bgImage:'/egor.png',
+  },
+  {
+    title: 'GPTSaves 🤖',
+    description: 'Website using GPT API to call and save GPT prompts',
+    link: 'https://gptsaves-deployment-project2.herokuapp.com/',
+    additionalDescription:
+      'I developed a website that allows users to communicate with ChatGPT, a chatbot, and securely save their conversations. I integrated the ChatGPT API, designed the UI/UX using HTML, CSS, and JavaScript, and connected it to a PostgreSQL database for secure storage. The website received positive feedback and improved my web development skills, particularly in working with APIs, UI/UX design, database connectivity, and user security.',
+    bgImage:'/egor.png',
+  },
+  {
+    title: 'Card.io 🃏',
+    description: 'Flashcard website',
+    link: 'https://velvety-croissant-33ec85.netlify.app/decks',
+    additionalDescription:
+      'I created a flashcard website called Card.io, which allows users to create and study decks of flashcards. The website features an intuitive user interface, responsive design, and seamless integration of flashcard functionality. Users can easily create, edit, and review flashcards, making it a valuable tool for learning and studying various subjects.',
+    bgImage:'/egor.png',
+  },
+  {
+    title: 'ZergCoach 🐛',
+    description: 'Zerg Coaching and information website',
+    link: 'https://main--lustrous-kulfi-ced407.netlify.app/',
+    additionalDescription:
+      'ZergCoach is a website dedicated to providing coaching and information about playing Zerg in StarCraft II. It offers comprehensive guides, strategies, and tips for Zerg players of all skill levels. The website also features a community forum where players can discuss strategies, share replays, and connect with other Zerg enthusiasts. Whether you\'re a beginner or an experienced Zerg player, ZergCoach is your go-to resource for improving your gameplay and staying updated with the latest Zerg strategies.',
+    bgImage:'/egor.png',
   },
   // Add more projects here...
 ];
-
-export default function Projects() {
-  return (
-    <>
-      <Head>
-        <title>Egor Dyuzhev - Projects</title>
-        <meta name="description" content="A showcase of my projects." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>Projects</h1>
-        <ul>
-          {projects.map((project, index) => (
-            <li key={index}>
-              <Link href={project.link}>
-                <a>{project.title}: {project.description}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </main>
-    </>
-  );
-}
+export default projects;
