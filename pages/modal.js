@@ -17,6 +17,11 @@ const Modal = ({ isOpen, onClose, project, theme }) => {
         </button>
         <h2>{project.title}</h2>
         <p>{project.description}</p>
+        <a href={project.link} target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline', color: 'teal' }}>
+  {project.link}
+</a>
+
+
         {/* Add any additional project details you want to display */}
       </div>
     </div>

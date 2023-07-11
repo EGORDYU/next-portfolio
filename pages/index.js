@@ -266,16 +266,12 @@ export default function Home() {
                       setIsModalOpen(true);
                     }}
                   >
-                    {project.title}: {project.description}
+                    <div className='text-2xl '>{project.title}:
+                    <br/>
+                     {project.description}</div>
                   </a>
                 </div>
                 <div className="mt-4">
-                  <button
-                    className="arrow-button text-gray-500 hover:text-gray-700 transition-colors duration-200"
-                    onClick={() => toggleExpand(index)}
-                  >
-                    <FiChevronDown size={20} />
-                  </button>
                 </div>
                 {expandedIndex === index && (
                   <motion.div
