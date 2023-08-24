@@ -249,26 +249,29 @@ export default function Home() {
           <ul className="grid grid-cols-2 gap-4">
             {projects.map((project, index) => (
               <motion.li
-                key={index}
-                initial={{ opacity: 0, translateY: 20 }}
-                animate={{ opacity: 1, translateY: 0 }}
-                transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
-                className={`border dark:border-gray-700 p-8 rounded-xl project ${styles['animation-fade-in']}`}
-                style={{ backgroundImage: `url(${project.bgImage})` }}
-              >
+              key={index}
+              initial={{ opacity: 0, translateY: 20 }}
+              animate={{ opacity: 1, translateY: 0 }}
+              transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
+              className={`border dark:border-gray-700 p-8 rounded-xl project animation-fade-in hover-outline`}
+              style={{ backgroundImage: `url(${project.bgImage})`, backgroundSize: 'cover' }}
+              onClick={() => {
+                  setSelectedProject(project);
+                  setIsModalOpen(true);
+              }}
+          >
+          
                 <div onClick={() => setSelectedProject(project)}>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline dark:text-blue-400 text-lg font-semibold"
-                    onClick={() => {
-                      setSelectedProject(project);
-                      setIsModalOpen(true);
-                    }}
+                    
                   >
-                    <div className='text-2xl '>{project.title}:
-                    <br/>
-                     {project.description}</div>
+                    <div className='text-2xl outline-text'>
+    {project.title}
+    <br />
+</div>
                   </a>
                 </div>
                 <div className="mt-4">

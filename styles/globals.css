@@ -26,3 +26,17 @@ body {
   color: var(--color-text);
   transition: background-color 0.5s ease, color 0.5s ease;
 }
+/* styles.css */
+.outline-text {
+  color: white; /* Set the text color to match the background */
+  display: inline-block; /* Ensures the text gets outlined without overflow */
+  padding: 5px; /* Add some padding for space around the text */
+  text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Apply the outline effect */
+}
+.hover-outline {
+  transition: outline-color 0.3s ease-in-out !important;
+}
+
+.hover-outline:hover {
+  outline: 3px solid red !important;
+}
