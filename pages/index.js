@@ -13,7 +13,6 @@ import skills from '../data/skills';
 import hobbies from '../data/hobbies';
 import Modal from './modal';
 
-
 //more pictures
 
 export default function Home() {
@@ -22,6 +21,12 @@ export default function Home() {
   const [activeLink, setActiveLink] = useState('about');
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const cats = [
+    { name: 'Simba', image: '/S.jpg' },
+    { name: 'Diesel', image: '/D.jpg' },
+    { name: 'Aelph', image: '/A.jpg' },
+  ];
+
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -297,7 +302,34 @@ export default function Home() {
 
         </section>
 
-
+        <section id="cats" className="mb-8">
+  <motion.h1
+    initial={{ opacity: 0, translateY: 20 }}
+    animate={{ opacity: 1, translateY: 0 }}
+    transition={{ duration: 0.8, delay: 1.2 }}
+    className={`font-bold text-2xl mb-2 ${styles['animation-fade-in']}`}
+  >
+    My Cats
+  </motion.h1>
+  <div className="grid grid-cols-3 gap-4">
+    {cats.map((cat, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, translateY: 20 }}
+        animate={{ opacity: 1, translateY: 0 }}
+        transition={{ duration: 0.8, delay: 1.4 + index * 0.2 }}
+        className={`flex flex-col items-center ${styles['animation-fade-in']}`}
+      >
+        <img src={cat.image} alt={cat.name} className="w-80 h-80 rounded-full object-cover" />
+        <motion.h2
+          className="text-lg font-semibold mt-2"
+        >
+          {cat.name}
+        </motion.h2>
+      </motion.div>
+    ))}
+  </div>
+</section>
 
         <section id="contact">
           <motion.h1
