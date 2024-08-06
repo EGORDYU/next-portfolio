@@ -28,6 +28,40 @@
   padding: 5px; /* Add some padding for space around the text */
   text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black; /* Apply the outline effect */
 }
+.activeNavLink {
+  font-weight: bold;
+  text-decoration: underline;
+}
+/* Add this to your CSS file (e.g., Home.module.css) */
+/* Add this to your CSS file (e.g., Home.module.css) */
+.section-large {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem; /* Add some margin at the bottom for spacing */
+  padding: 2rem; /* Add padding for some internal spacing */
+  box-sizing: border-box;
+}
+
+
+/* Ensure sections are centered within their containers */
+.section-large > div {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Optional: Add some styling for different themes */
+.dark .section-large {
+  background-color: #1a202c; /* Dark background color */
+  color: #cbd5e0; /* Light text color */
+}
+
+.light .section-large {
+  background-color: #edf2f7; /* Light background color */
+  color: #2d3748; /* Dark text color */
+}
 
 
  
