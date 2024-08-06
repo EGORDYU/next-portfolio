@@ -3,7 +3,6 @@ const hobbies = [
     'Boxing',
     'Hiking',
     'Swimming',
-    'Running'
   ]
 
 export default hobbies;

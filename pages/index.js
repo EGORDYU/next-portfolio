@@ -8,12 +8,10 @@ import styles from '../styles/animations.module.css';
 import '../styles/Home.module.css';
 import '../styles/Projects.module.css';
 import '../styles/Modal.module.css';
-import projects from '../data/projects';
+import { projects, contracting } from '../data/projects';
 import skills from '../data/skills';
 import hobbies from '../data/hobbies';
 import Modal from './modal';
-
-//more pictures
 
 export default function Home() {
   const { theme, setTheme } = useTheme();
@@ -21,12 +19,6 @@ export default function Home() {
   const [activeLink, setActiveLink] = useState('about');
   const [selectedProject, setSelectedProject] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const cats = [
-    { name: 'Simba', image: '/S.jpg' },
-    { name: 'Diesel', image: '/D.jpg' },
-    { name: 'Aelph', image: '/A.jpg' },
-  ];
-
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -42,33 +34,46 @@ export default function Home() {
 
   useEffect(() => {
     const onScroll = () => {
+      const viewportHeight = window.innerHeight;
+      const midpoint = viewportHeight / 2;
+  
       const section1 = document.getElementById('about');
       const section2 = document.getElementById('skills');
       const section3 = document.getElementById('projects');
       const section4 = document.getElementById('contact');
-
+      const section5 = document.getElementById('contracts')
+      
+  
       const distance1 = section1.getBoundingClientRect().top;
       const distance2 = section2.getBoundingClientRect().top;
       const distance3 = section3.getBoundingClientRect().top;
       const distance4 = section4.getBoundingClientRect().top;
-
-      if (distance1 <= 0 && distance2 > 0) {
+      const distance5 = section5.getBoundingClientRect().top;
+  
+      const isInMiddle = (distance) => {
+        return distance >= midpoint * 0.5 && distance <= midpoint * 1.5;
+      };
+  
+      if (isInMiddle(distance1)) {
         setActiveLink('about');
-      } else if (distance2 <= 0 && distance3 > 0) {
+      } else if (isInMiddle(distance2)) {
         setActiveLink('skills');
-      } else if (distance3 <= 0 && distance4 > 0) {
+      } else if (isInMiddle(distance3)) {
         setActiveLink('projects');
-      } else if (distance4 <= 0) {
+      } else if (isInMiddle(distance4)) {
         setActiveLink('contact');
+      } else if (isInMiddle(distance5)){
+        setActiveLink('contracts')
       }
     };
-
+  
     window.addEventListener('scroll', onScroll);
-
+  
     return () => {
       window.removeEventListener('scroll', onScroll);
     };
   }, []);
+  
 
   return (
     <div className="container mx-auto max-w-4xl px-4">
@@ -79,29 +84,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <br />
-
-
-      <nav className={`fixed top-100 right-40 h-screen   ${theme === 'light' ? 'text-black' : 'text-white'}`}>
-
+      <nav className={`fixed top-0 right-40 h-screen ${theme === 'light' ? 'text-black' : 'text-white'}`}>
         <div className="h-full flex flex-col justify-center items-center">
           <button
             onClick={toggleTheme}
-            className="mb-6 py-2 px-4 border rounded-full text-sm uppercase tracking-wide font-bold 
-  transition-colors duration-200 transform 
-  hover:scale-105 
-  dark:hover:bg-white dark:hover:text-black
-  dark:bg-black dark:text-white"
+            className="mb-6 py-2 px-4 border rounded-full text-sm uppercase tracking-wide font-bold transition-colors duration-200 transform hover:scale-105 dark:hover:bg-white dark:hover:text-black dark:bg-black dark:text-white"
           >
             {theme === 'light' ? 'Toggle Dark Mode' : 'Toggle Light Mode'}
           </button>
-          NAVIGATION
           <ScrollLink
             to="about"
             smooth={true}
             duration={500}
-            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-red-300 outline ${styles['navigation-link']
-              } ${styles['about-link']} ${activeLink === 'about' ? 'activeNavLink' : ''}`}
+            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-red-300 outline ${styles['navigation-link']} ${styles['about-link']} ${activeLink === 'about' ? 'activeNavLink' : ''}`}
             onClick={() => setExpandedIndex(-1)}
           >
             About
@@ -110,41 +105,44 @@ export default function Home() {
             to="skills"
             smooth={true}
             duration={500}
-            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-blue-300 outline ${styles['navigation-link']
-              } ${styles['skills-link']} ${activeLink === 'skills' ? 'activeNavLink' : ''}`}
+            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-blue-300 outline ${styles['navigation-link']} ${styles['skills-link']} ${activeLink === 'skills' ? 'activeNavLink' : ''}`}
             onClick={() => setExpandedIndex(-1)}
           >
             Skills
           </ScrollLink>
           <ScrollLink
+            to="contracts"
+            smooth={true}
+            duration={500}
+            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-green-300 outline ${styles['navigation-link']} ${styles['contact-link']} ${activeLink === 'contact' ? 'activeNavLink' : ''}`}
+            onClick={() => setExpandedIndex(-1)}
+          >
+            Contract Work
+          </ScrollLink>
+          <ScrollLink
             to="projects"
             smooth={true}
             duration={500}
-            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-purple-300 outline ${styles['navigation-link']
-              } ${styles['projects-link']} ${activeLink === 'projects' ? 'activeNavLink' : ''}`}
+            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-purple-300 outline ${styles['navigation-link']} ${styles['projects-link']} ${activeLink === 'projects' ? 'activeNavLink' : ''}`}
             onClick={() => setExpandedIndex(-1)}
           >
-            Projects
+            Personal Projects
           </ScrollLink>
           <ScrollLink
             to="contact"
             smooth={true}
             duration={500}
-            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-green-300 outline ${styles['navigation-link']
-              } ${styles['contact-link']} ${activeLink === 'contact' ? 'activeNavLink' : ''}`}
+            className={`text-3xl font-semibold mb-4 py-2 px-4 rounded-full hover:bg-green-300 outline ${styles['navigation-link']} ${styles['contact-link']} ${activeLink === 'contact' ? 'activeNavLink' : ''}`}
             onClick={() => setExpandedIndex(-1)}
           >
             Contact
           </ScrollLink>
+          
         </div>
       </nav>
 
-
-
       <main>
-
-
-        <section id="about" className="mb-8 flex items-center">
+        <section id="about" className="mb-8 flex items-center pt-[200px]">
           <div className="grid grid-cols-2 gap-8">
             <div>
               <motion.h1
@@ -163,14 +161,6 @@ export default function Home() {
               >
                 Hi, I'm Egor Dyuzhev, a developer with skills in various languages and
                 frameworks. I specialize in JavaScript, CSS, React, Python, Django, and Next.js. I'm passionate about coding and building creative solutions to complex problems. I'm constantly learning and exploring new technologies to expand my skill set.
-
-                <br />
-
-                <br />
-                My background is in electrical contracting, but I pivoted to programming recently and never looked back.
-                I found my true passion in coding and software development, and I'm excited to apply my technical
-                skills and problem-solving abilities to create innovative solutions.
-
               </motion.p>
             </div>
             <motion.div
@@ -179,12 +169,13 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.4 }}
               className={`flex justify-center ${styles['animation-fade-in']}`}
             >
-              <img src="/egor.png" alt="Egor Dyuzhev" className="w-100 h-102 " />
+              <img src="/egor.png" alt="Egor Dyuzhev" className="w-full max-w-sm h-auto rounded-lg shadow-lg" />
+
             </motion.div>
           </div>
         </section>
 
-        <section id="skills" className="mb-8">
+        <section id="skills" className="mb-8 pt-16">
           <motion.h1
             initial={{ opacity: 0, translateY: 20 }}
             animate={{ opacity: 1, translateY: 0 }}
@@ -213,7 +204,8 @@ export default function Home() {
           </motion.ul>
         </section>
 
-        <section id="hobbies" className="mb-8">
+
+        <section id="hobbies" className="mb-8 pt-16">
           <motion.h1
             initial={{ opacity: 0, translateY: 20 }}
             animate={{ opacity: 1, translateY: 0 }}
@@ -242,41 +234,40 @@ export default function Home() {
           </motion.ul>
         </section>
 
-        <section id="projects" className="mb-8">
+
+        <section id="contracts" className="mb-8 pt-16">
           <motion.h1
             initial={{ opacity: 0, translateY: 20 }}
             animate={{ opacity: 1, translateY: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
             className={`font-bold text-2xl mb-2 ${styles['animation-fade-in']}`}
           >
-            Projects
+            Contracts
           </motion.h1>
           <ul className="grid grid-cols-2 gap-4">
-            {projects.map((project, index) => (
+            {contracting.map((contract, index) => (
               <motion.li
-              key={index}
-              initial={{ opacity: 0, translateY: 20 }}
-              animate={{ opacity: 1, translateY: 0 }}
-              transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
-              className={`border dark:border-gray-700 p-8 rounded-xl project animation-fade-in hover-outline`}
-              style={{ backgroundImage: `url(${project.bgImage})`, backgroundSize: 'cover' }}
-              onClick={() => {
-                  setSelectedProject(project);
-                  setIsModalOpen(true);
-              }}
-          >
-          
-                <div onClick={() => setSelectedProject(project)}>
+                key={index}
+                initial={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
+                className={`border dark:border-gray-700 p-8 rounded-xl project animation-fade-in hover-outline`}
+                style={{ backgroundImage: `url(${contract.bgImage})`, backgroundSize: 'cover' }}
+                onClick={() => {
+                    setSelectedProject(contract);
+                    setIsModalOpen(true);
+                }}
+            >
+                <div onClick={() => setSelectedProject(contract)}>
                   <a
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-600 hover:underline dark:text-blue-400 text-lg font-semibold"
-                    
                   >
                     <div className='text-2xl outline-text'>
-    {project.title}
-    <br />
-</div>
+                      {contract.title}
+                      <br />
+                    </div>
                   </a>
                 </div>
                 <div className="mt-4">
@@ -288,7 +279,7 @@ export default function Home() {
                     transition={{ duration: 0.4 }}
                     className={`mt-4 ${styles['animation-fade-in']}`}
                   >
-                    {/* <p className="text-lg">{project.additionalDescription}</p> */}
+                    <p className="text-lg">{contract.additionalDescription}</p>
                     {/* Add any additional content you want to show when expanded */}
                   </motion.div>
                 )}
@@ -299,39 +290,64 @@ export default function Home() {
           {selectedProject && (
             <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} project={selectedProject} theme={theme} />
           )}
-
         </section>
+        <section id="projects" className="mb-8 pt-16">
+          <motion.h1
+            initial={{ opacity: 0, translateY: 20 }}
+            animate={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className={`font-bold text-2xl mb-2 ${styles['animation-fade-in']}`}
+          >
+            Personal Projects 
+          </motion.h1>
+          <ul className="grid grid-cols-2 gap-4">
+            {projects.map((project, index) => (
+              <motion.li
+                key={index}
+                initial={{ opacity: 0, translateY: 20 }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ duration: 0.8, delay: 1.2 + index * 0.2 }}
+                className={`border dark:border-gray-700 p-8 rounded-xl project animation-fade-in hover-outline`}
+                style={{ backgroundImage: `url(${project.bgImage})`, backgroundSize: 'cover' }}
+                onClick={() => {
+                    setSelectedProject(project);
+                    setIsModalOpen(true);
+                }}
+            >
+                <div onClick={() => setSelectedProject(project)}>
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline dark:text-blue-400 text-lg font-semibold"
+                  >
+                    <div className='text-2xl outline-text'>
+                      {project.title}
+                      <br />
+                    </div>
+                  </a>
+                </div>
+                <div className="mt-4">
+                </div>
+                {expandedIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, translateY: 10 }}
+                    animate={{ opacity: 1, translateY: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className={`mt-4 ${styles['animation-fade-in']}`}
+                  >
+                    <p className="text-lg">{project.additionalDescription}</p>
+                    {/* Add any additional content you want to show when expanded */}
+                  </motion.div>
+                )}
+              </motion.li>
+            ))}
+          </ul>
 
-        <section id="cats" className="mb-8">
-  <motion.h1
-    initial={{ opacity: 0, translateY: 20 }}
-    animate={{ opacity: 1, translateY: 0 }}
-    transition={{ duration: 0.8, delay: 1.2 }}
-    className={`font-bold text-2xl mb-2 ${styles['animation-fade-in']}`}
-  >
-    My Cats
-  </motion.h1>
-  <div className="grid grid-cols-3 gap-4">
-    {cats.map((cat, index) => (
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, translateY: 20 }}
-        animate={{ opacity: 1, translateY: 0 }}
-        transition={{ duration: 0.8, delay: 1.4 + index * 0.2 }}
-        className={`flex flex-col items-center ${styles['animation-fade-in']}`}
-      >
-        <img src={cat.image} alt={cat.name} className="w-80 h-80 rounded-full object-cover" />
-        <motion.h2
-          className="text-lg font-semibold mt-2"
-        >
-          {cat.name}
-        </motion.h2>
-      </motion.div>
-    ))}
-  </div>
-</section>
-
-        <section id="contact">
+          {selectedProject && (
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} project={selectedProject} theme={theme} />
+          )}
+        </section>
+        <section id="contact" className='pt-16'>
           <motion.h1
             initial={{ opacity: 0, translateY: 20 }}
             animate={{ opacity: 1, translateY: 0 }}
@@ -364,7 +380,6 @@ export default function Home() {
           >
             GitHub: <a href="https://github.com/EGORDYU" target="_blank" rel="noopener noreferrer">github.com/EGORDYU</a>
           </motion.p>
-
         </section>
       </main>
     </div>
