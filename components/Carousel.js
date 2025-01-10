@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 const images = [
-  '/egor1.jpg',
   '/egor2.jpg',
-  '/egor3.jpg',
-  '/egor4.jpg',
+  '/egor2.jpg',
+  '/egor2.jpg',
+  '/egor2.jpg',
 
 ];
 
