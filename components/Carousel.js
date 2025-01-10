@@ -1,29 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 const images = [
   '/egor1.jpg',
   '/egor2.jpg',
   '/egor3.jpg',
   '/egor4.jpg',
-
 ];
 
-const ImageCarousel = () => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change image every 3 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
+const ImageGallery = () => {
   return (
-    <div className="w-52 max-w-xl h-52 rounded-lg shadow-lg">
-      <img src={images[currentImageIndex]} alt="Egor Dyuzhev" className="w-auto h-auto rounded-lg shadow-lg" />
+    <div className="grid grid-cols-2 gap-4 w-100 max-w-xl">
+      {images.map((image, index) => (
+        <div key={index} className="w-full h-52 rounded-lg overflow-hidden shadow-lg">
+          <img src={image} alt={`Egor Dyuzhev ${index + 1}`} className="w-full h-full object-cover" />
+        </div>
+      ))}
     </div>
   );
 };
 
-export default ImageCarousel;
+export default ImageGallery;

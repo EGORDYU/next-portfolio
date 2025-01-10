@@ -38,7 +38,7 @@ body {
   font-size: calc(var(--scale-factor) * 1rem);
   background-color: var(--color-bg);
   color: var(--color-text);
-  transition: background-color 0.5s ease, color 0.5s ease;
+  /* transition: background-color 0.5s ease, color 0.5s ease; */
 }
 /* styles.css */
 .outline-text {
