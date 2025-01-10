@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 const images = [
+  '/egor1.jpg',
   '/egor2.jpg',
-  '/egor2.jpg',
-  '/egor2.jpg',
-  '/egor2.jpg',
+  '/egor3.jpg',
+  '/egor4.jpg',
 
 ];
 
@@ -20,7 +20,7 @@ const ImageCarousel = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-xl h-auto rounded-lg shadow-lg">
+    <div className="w-52 max-w-xl h-52 rounded-lg shadow-lg">
       <img src={images[currentImageIndex]} alt="Egor Dyuzhev" className="w-auto h-auto rounded-lg shadow-lg" />
     </div>
   );

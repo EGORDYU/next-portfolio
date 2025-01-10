@@ -52,14 +52,13 @@
   margin: 0 auto;
 }
 
-/* Optional: Add some styling for different themes */
 .dark .section-large {
   background-color: #1a202c; /* Dark background color */
   color: #cbd5e0; /* Light text color */
 }
 
 .light .section-large {
-  background-color: #edf2f7; /* Light background color */
+  background-color: #ff0000; /* Light background color */
   color: #2d3748; /* Dark text color */
 }
 

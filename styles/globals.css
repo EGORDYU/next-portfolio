@@ -13,14 +13,26 @@
 }
 
 body.light {
-  --color-bg: var(--color-bg-light);
-  --color-text: var(--color-text-light);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+  background-image: url('/light-mode.png');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
 }
 
 body.dark {
-  --color-bg: var(--color-bg-dark);
-  --color-text: var(--color-text-dark);
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-dark);
+  background-image: url('/dark-mode.png');
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-attachment: fixed; 
 }
+
+
 
 body {
   font-size: calc(var(--scale-factor) * 1rem);
